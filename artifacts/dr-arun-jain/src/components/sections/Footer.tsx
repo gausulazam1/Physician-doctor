@@ -2,80 +2,64 @@ import React from 'react';
 import { Leaf } from 'lucide-react';
 import { SiFacebook, SiWhatsapp, SiGoogle } from 'react-icons/si';
 
+const links = [
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Services', href: '#services' },
+  { name: 'Contact', href: '#contact' },
+  { name: 'Reviews', href: '#reviews' },
+  { name: 'FAQs', href: '#faqs' },
+  { name: 'Gallery', href: '#gallery' },
+];
+
 export function Footer() {
-  const links = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'Reviews', href: '#reviews' },
-    { name: 'FAQs', href: '#faqs' },
-    { name: 'Gallery', href: '#gallery' },
-  ];
-
   return (
-    <footer className="bg-[#081b33] text-white py-10 sm:py-12 border-t border-white/10">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-white/10">
+    <footer className="bg-[#081b33] text-white w-full overflow-x-clip">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8 pb-8 border-b border-white/10">
 
-          <div className="flex flex-col items-center md:items-start gap-2">
+          {/* Brand */}
+          <div className="flex flex-col items-center md:items-start gap-1.5 shrink-0">
             <a href="#home" className="flex items-center gap-2">
-              <Leaf className="w-6 h-6 text-primary" />
-              <span className="font-serif text-xl font-bold tracking-tight">
+              <Leaf className="w-5 h-5 text-primary" />
+              <span className="font-serif text-lg font-bold">
                 Dr. <span className="text-primary">Arun Jain</span>
               </span>
             </a>
-            <p className="text-white/60 text-sm text-center md:text-left">Trusted Family Care Since 1988</p>
-            <p className="text-white/40 text-xs text-center md:text-left">Rohini, Delhi · Family Physician & Diabetologist</p>
+            <p className="text-white/55 text-xs sm:text-sm">Trusted Family Care Since 1988</p>
+            <p className="text-white/35 text-xs">Rohini, Delhi · Family Physician & Diabetologist</p>
           </div>
 
+          {/* Links */}
           <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:gap-x-6">
-            {links.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-xs sm:text-sm text-white/70 hover:text-primary transition-colors"
-              >
-                {link.name}
+            {links.map(l => (
+              <a key={l.name} href={l.href} className="text-xs sm:text-sm text-white/65 hover:text-primary transition-colors">
+                {l.name}
               </a>
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
-            <a
-              href="https://maps.google.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-primary hover:text-secondary transition-all"
-              aria-label="Google Reviews"
-            >
-              <SiGoogle className="w-4 h-4 sm:w-5 sm:h-5" />
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-primary hover:text-secondary transition-all"
-              aria-label="Facebook"
-            >
-              <SiFacebook className="w-4 h-4 sm:w-5 sm:h-5" />
-            </a>
-            <a
-              href="https://wa.me/918092150012"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-[#25D366] hover:text-white transition-all"
-              aria-label="WhatsApp"
-            >
-              <SiWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
-            </a>
+          {/* Social */}
+          <div className="flex items-center gap-3 shrink-0">
+            {[
+              { href: 'https://maps.google.com', Icon: SiGoogle, label: 'Google' },
+              { href: 'https://facebook.com', Icon: SiFacebook, label: 'Facebook' },
+              { href: 'https://wa.me/918092150012', Icon: SiWhatsapp, label: 'WhatsApp' },
+            ].map(({ href, Icon, label }) => (
+              <a
+                key={label}
+                href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center text-white/65 hover:bg-primary hover:text-secondary transition-all"
+              >
+                <Icon className="w-4 h-4" />
+              </a>
+            ))}
           </div>
-
         </div>
 
-        <div className="text-center text-white/50 text-xs sm:text-sm">
-          <p>© {new Date().getFullYear()} Dr. Arun Jain. All rights reserved. | Rohini, Delhi</p>
-        </div>
+        <p className="text-center text-white/45 text-xs sm:text-sm pt-6">
+          © {new Date().getFullYear()} Dr. Arun Jain. All rights reserved. | Rohini, Delhi - 110086
+        </p>
       </div>
     </footer>
   );

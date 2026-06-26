@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Leaf } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -24,52 +21,43 @@ export function Navbar() {
     { name: 'Gallery', href: '#gallery' },
   ];
 
-  const handleNavClick = () => {
-    setMobileMenuOpen(false);
-  };
-
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-secondary ${
-          isScrolled ? 'py-2 shadow-md' : 'py-3 sm:py-4'
-        }`}
-      >
-        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
-          <a href="#home" className="flex items-center gap-2 group" data-testid="link-home-logo">
-            <Leaf className="w-7 h-7 sm:w-8 sm:h-8 text-primary" />
-            <span className="font-serif text-xl sm:text-2xl text-white font-bold tracking-tight">
-              Dr. <span className="text-primary group-hover:text-white transition-colors duration-300">Arun Jain</span>
+      <header className={`fixed top-0 left-0 right-0 z-50 bg-secondary transition-all duration-300 ${isScrolled ? 'shadow-lg py-2' : 'py-3'}`}>
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+
+          {/* Logo */}
+          <a href="#home" className="flex items-center gap-2 shrink-0" data-testid="link-home-logo">
+            <Leaf className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
+            <span className="font-serif text-lg sm:text-xl font-bold text-white tracking-tight">
+              Dr.&nbsp;<span className="text-primary">Arun Jain</span>
             </span>
           </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
-            <ul className="flex items-center gap-5 xl:gap-8">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-white hover:text-primary transition-colors duration-200 font-medium text-sm xl:text-base"
-                    data-testid={`link-nav-${link.name.toLowerCase()}`}
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <Button
-              asChild
-              className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-5 xl:px-6 shadow-lg shadow-primary/20 text-sm xl:text-base"
+          {/* Desktop Nav — visible at md+ (768px) */}
+          <nav className="hidden md:flex items-center gap-1 lg:gap-2 xl:gap-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-white hover:text-primary transition-colors font-medium text-xs lg:text-sm xl:text-base px-2 lg:px-3 py-1 rounded"
+                data-testid={`link-nav-${link.name.toLowerCase()}`}
+              >
+                {link.name}
+              </a>
+            ))}
+            <a
+              href="tel:+919531323295"
+              className="ml-2 bg-primary hover:bg-primary/90 text-secondary font-bold rounded-full px-4 lg:px-5 py-2 text-xs lg:text-sm whitespace-nowrap shadow-lg shadow-primary/20 transition-colors"
               data-testid="button-nav-call"
             >
-              <a href="tel:+919531323295">📞 95313 23295</a>
-            </Button>
+              📞 95313 23295
+            </a>
           </nav>
 
-          {/* Mobile Toggle */}
+          {/* Mobile hamburger */}
           <button
-            className="lg:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+            className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
             data-testid="button-mobile-menu-toggle"
@@ -79,36 +67,33 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Nav Drawer — rendered outside header to avoid stacking context issues */}
+      {/* Mobile drawer */}
       <div
-        className={`lg:hidden fixed inset-0 bg-secondary/98 backdrop-blur-sm z-40 transition-transform duration-300 transform ${
+        className={`md:hidden fixed inset-x-0 top-[52px] bottom-0 bg-secondary/98 backdrop-blur-sm z-40 flex flex-col items-center justify-center gap-6 transition-transform duration-300 ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
-        style={{ top: '56px' }}
       >
-        <nav className="flex flex-col items-center justify-center h-full gap-6 pb-16">
-          <ul className="flex flex-col items-center gap-5 text-xl">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  onClick={handleNavClick}
-                  className="text-white hover:text-primary transition-colors font-serif text-2xl"
-                  data-testid={`link-mobile-nav-${link.name.toLowerCase()}`}
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <Button
-            asChild
-            size="lg"
-            className="rounded-full bg-primary text-primary-foreground font-bold mt-2 px-8"
-          >
-            <a href="tel:+919531323295" onClick={handleNavClick}>📞 95313 23295</a>
-          </Button>
-        </nav>
+        <ul className="flex flex-col items-center gap-4">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <a
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-white hover:text-primary transition-colors font-serif text-2xl"
+                data-testid={`link-mobile-nav-${link.name.toLowerCase()}`}
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a
+          href="tel:+919531323295"
+          onClick={() => setMobileMenuOpen(false)}
+          className="bg-primary text-secondary font-bold rounded-full px-8 py-3 text-lg"
+        >
+          📞 95313 23295
+        </a>
       </div>
     </>
   );
