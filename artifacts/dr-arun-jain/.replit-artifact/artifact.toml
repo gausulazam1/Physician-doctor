@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Dr. Arun Jain"
+version = "1.0.0"
+id = "artifacts/dr-arun-jain"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20527
+
+[services.development]
+run = "pnpm --filter @workspace/dr-arun-jain run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/dr-arun-jain", "run", "build" ]
+publicDir = "artifacts/dr-arun-jain/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20527"
+BASE_PATH = "/"
