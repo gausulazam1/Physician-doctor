@@ -8,7 +8,7 @@ import { FAQs } from "@/components/sections/FAQs";
 import { Gallery } from "@/components/sections/Gallery";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
-import { FloatingCallButton } from "@/components/FloatingCallButton";
+import { FloatingButtons } from "@/components/FloatingButtons";
 
 export default function Home() {
   return (
@@ -24,7 +24,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <FloatingCallButton />
+      <FloatingButtons />
     </div>
   );
 }

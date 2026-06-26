@@ -12,21 +12,21 @@ export function Gallery() {
   ];
 
   return (
-    <section id="gallery" className="py-24 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.h2 
+    <section id="gallery" className="py-16 sm:py-24 bg-white">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-serif text-4xl md:text-5xl font-bold text-primary mb-4"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4"
           >
             Gallery <span className="text-secondary">Photo Gallery</span>
           </motion.h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           {images.map((img, idx) => (
             <motion.div
               key={idx}
