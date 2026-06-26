@@ -6,7 +6,7 @@ import { SiWhatsapp } from 'react-icons/si';
 
 export function Contact() {
   return (
-    <section id="contact" className="py-16 sm:py-24 bg-secondary text-white relative">
+    <section id="contact" className="py-16 sm:py-24 bg-secondary text-white relative overflow-hidden w-full max-w-full">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(200,150,62,0.05)_0%,transparent_50%)] pointer-events-none"></div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">

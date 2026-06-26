@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-[100dvh] flex items-center bg-secondary pt-20 overflow-hidden">
+    <section id="home" className="relative min-h-[100dvh] flex items-center bg-secondary pt-20 overflow-hidden w-full max-w-full">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(18,43,74,1)_0%,rgba(11,37,69,1)_100%)] pointer-events-none"></div>
       <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)] pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-8 items-center py-10 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 grid lg:grid-cols-2 gap-8 items-center py-10 lg:py-24 w-full max-w-full">
 
         {/* Left Content */}
         <motion.div

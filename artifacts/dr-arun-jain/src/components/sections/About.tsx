@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 
 export function About() {
   return (
-    <section id="about" className="py-16 sm:py-24 bg-white relative overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section id="about" className="py-16 sm:py-24 bg-white relative overflow-hidden w-full max-w-full">
+      <div className="container mx-auto px-4 sm:px-6 w-full">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,7 @@ export function About() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none"
+            className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none overflow-hidden"
           >
             <div className="aspect-[4/5] rounded-2xl overflow-hidden relative z-10 shadow-2xl">
               <img
@@ -31,8 +31,7 @@ export function About() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-2/3 h-2/3 bg-primary/10 rounded-2xl -z-10 border border-primary/20"></div>
-            <div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-24 sm:w-32 h-24 sm:h-32 bg-[radial-gradient(#C8963E_1.5px,transparent_1.5px)] [background-size:16px_16px] opacity-30 -z-10"></div>
+            <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-primary/10 rounded-2xl -z-10 border border-primary/20"></div>
           </motion.div>
 
           <motion.div

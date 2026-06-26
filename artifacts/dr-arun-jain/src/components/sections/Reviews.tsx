@@ -32,7 +32,7 @@ export function Reviews() {
   ];
 
   return (
-    <section id="reviews" className="py-16 sm:py-24 bg-white">
+    <section id="reviews" className="py-16 sm:py-24 bg-white overflow-hidden w-full max-w-full">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <motion.h2

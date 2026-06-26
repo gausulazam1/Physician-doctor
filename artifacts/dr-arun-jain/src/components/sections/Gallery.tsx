@@ -12,7 +12,7 @@ export function Gallery() {
   ];
 
   return (
-    <section id="gallery" className="py-16 sm:py-24 bg-white">
+    <section id="gallery" className="py-16 sm:py-24 bg-white overflow-hidden w-full max-w-full">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <motion.h2

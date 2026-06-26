@@ -40,7 +40,7 @@ export function FAQs() {
   ];
 
   return (
-    <section id="faqs" className="py-16 sm:py-24 bg-background">
+    <section id="faqs" className="py-16 sm:py-24 bg-background overflow-hidden w-full max-w-full">
       <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
         <div className="text-center mb-10 sm:mb-16">
           <motion.h2

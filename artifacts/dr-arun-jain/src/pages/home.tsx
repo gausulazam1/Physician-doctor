@@ -12,7 +12,7 @@ import { FloatingButtons } from "@/components/FloatingButtons";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden w-full">
       <Navbar />
       <main>
         <Hero />
