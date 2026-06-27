@@ -3,14 +3,19 @@ import { Leaf } from 'lucide-react';
 import { SiFacebook, SiWhatsapp, SiGoogle } from 'react-icons/si';
 
 const links = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Services', href: '#services' },
-  { name: 'Contact', href: '#contact' },
-  { name: 'Reviews', href: '#reviews' },
-  { name: 'FAQs', href: '#faqs' },
-  { name: 'Gallery', href: '#gallery' },
+  { name: 'Home', id: 'home' },
+  { name: 'About', id: 'about' },
+  { name: 'Services', id: 'services' },
+  { name: 'Contact', id: 'contact' },
+  { name: 'Reviews', id: 'reviews' },
+  { name: 'FAQs', id: 'faqs' },
+  { name: 'Gallery', id: 'gallery' },
 ];
+
+function scrollTo(id: string) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 export function Footer() {
   return (
@@ -20,22 +25,29 @@ export function Footer() {
 
           {/* Brand */}
           <div className="flex flex-col items-center md:items-start gap-1.5 shrink-0">
-            <a href="#home" className="flex items-center gap-2">
+            <button
+              onClick={() => scrollTo('home')}
+              className="flex items-center gap-2 bg-transparent border-none cursor-pointer"
+            >
               <Leaf className="w-5 h-5 text-primary" />
-              <span className="font-serif text-lg font-bold">
+              <span className="font-serif text-lg font-bold text-white">
                 Dr. <span className="text-primary">Arun Jain</span>
               </span>
-            </a>
+            </button>
             <p className="text-white/55 text-xs sm:text-sm">Trusted Family Care Since 1988</p>
-            <p className="text-white/35 text-xs">Rohini, Delhi · Family Physician & Diabetologist</p>
+            <p className="text-white/35 text-xs">Rohini, Delhi · Family Physician &amp; Diabetologist</p>
           </div>
 
           {/* Links */}
           <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:gap-x-6">
             {links.map(l => (
-              <a key={l.name} href={l.href} className="text-xs sm:text-sm text-white/65 hover:text-primary transition-colors">
+              <button
+                key={l.name}
+                onClick={() => scrollTo(l.id)}
+                className="text-xs sm:text-sm text-white/65 hover:text-primary transition-colors bg-transparent border-none cursor-pointer"
+              >
                 {l.name}
-              </a>
+              </button>
             ))}
           </nav>
 
