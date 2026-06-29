@@ -2,68 +2,124 @@ import React from "react";
 import { Layout } from "@/components/Layout";
 import { PageBanner } from "@/components/PageBanner";
 import { motion } from "framer-motion";
-import { Activity, Stethoscope, Syringe, ShieldCheck, Baby, HeartHandshake, Gauge, Weight, Pill, Heart, Brain, Microscope } from "lucide-react";
 import { Link } from "wouter";
 
 const services = [
-  { Icon: Stethoscope, title: "Family Medicine", desc: "General health consultations and holistic care for the entire family — from newborns to seniors.", color: "bg-blue-50 text-blue-600" },
-  { Icon: Activity, title: "Diabetes Management", desc: "Expert diabetology, blood sugar control, HbA1c monitoring, and lifestyle counselling for long-term control.", color: "bg-amber-50 text-amber-600" },
-  { Icon: Syringe, title: "Acupuncture Therapy", desc: "Certified acupuncture treatment for pain relief, stress reduction, and chronic condition management.", color: "bg-green-50 text-green-600" },
-  { Icon: ShieldCheck, title: "Preventive Care", desc: "Annual health screenings, vaccinations, and proactive lifestyle counselling to stay ahead of disease.", color: "bg-purple-50 text-purple-600" },
-  { Icon: Baby, title: "Child Health (Pediatrics)", desc: "Pediatric consultations, immunity building, nutrition guidance, and developmental tracking for children.", color: "bg-pink-50 text-pink-600" },
-  { Icon: HeartHandshake, title: "Geriatric Care", desc: "Specialised, compassionate care tailored to the unique health needs and challenges of elderly patients.", color: "bg-teal-50 text-teal-600" },
-  { Icon: Gauge, title: "Hypertension Management", desc: "Blood pressure monitoring, medication management, dietary guidance, and cardiovascular risk reduction.", color: "bg-red-50 text-red-600" },
-  { Icon: Weight, title: "Weight Management", desc: "Clinical obesity counselling, safe evidence-based diet planning, and metabolic health optimisation.", color: "bg-orange-50 text-orange-600" },
-  { Icon: Pill, title: "Thyroid Disorders", desc: "Accurate diagnosis and ongoing management of hypothyroidism, hyperthyroidism, and related conditions.", color: "bg-indigo-50 text-indigo-600" },
-  { Icon: Heart, title: "Cardiac Risk Assessment", desc: "Early detection and risk profiling for heart disease, cholesterol management, and lifestyle advice.", color: "bg-rose-50 text-rose-600" },
-  { Icon: Brain, title: "Stress & Mental Wellness", desc: "Counselling for stress, anxiety, sleep disorders, and overall mental wellbeing using holistic methods.", color: "bg-violet-50 text-violet-600" },
-  { Icon: Microscope, title: "Diagnostic Services", desc: "Comprehensive pathology referrals, blood tests, and interpretation of diagnostic reports with expert advice.", color: "bg-cyan-50 text-cyan-600" },
+  {
+    emoji: "🩺",
+    title: "General Medicine",
+    desc: "Comprehensive diagnosis and treatment for fevers, infections, respiratory illness, and all common ailments — for every age group.",
+  },
+  {
+    emoji: "🍬",
+    title: "Diabetes Management",
+    desc: "Expert diabetology tailored to Indian diet and lifestyle. Blood sugar monitoring, HbA1c tracking, medication management, and practical diet advice.",
+  },
+  {
+    emoji: "🫀",
+    title: "Hypertension & Blood Pressure",
+    desc: "Blood pressure monitoring, cardiac risk assessment, medication management, dietary guidance, and long-term BP control strategies.",
+  },
+  {
+    emoji: "💉",
+    title: "Vaccination & Preventive Care",
+    desc: "Immunisations for all ages (children and adults), annual health screenings, and proactive lifestyle counselling to prevent disease.",
+  },
+  {
+    emoji: "🦴",
+    title: "Physiotherapy & Acupuncture",
+    desc: "MD-certified acupuncture therapy for chronic pain, back pain, knee pain, migraines, stress, and rehabilitation. Sterile single-use needles always used.",
+  },
+  {
+    emoji: "👨‍👩‍👧",
+    title: "Family Health Care",
+    desc: "Trusted primary care for the entire family — from newborns (vaccinations, fever, growth monitoring) to senior citizens (chronic disease, geriatric care).",
+  },
+  {
+    emoji: "💬",
+    title: "Sexual Counseling & Education",
+    desc: "Confidential, compassionate counselling and education for sexual health concerns — delivered with professionalism and complete privacy.",
+  },
 ];
 
 export default function ServicesPage() {
   return (
     <Layout>
       <PageBanner
-        title="Our"
+        title="Our Medical"
         highlight="Services"
-        subtitle="Comprehensive healthcare for every stage of life"
+        subtitle="Comprehensive healthcare for every member of your family — all under one roof"
         breadcrumb="Services"
       />
 
+      {/* ── SERVICES GRID ── */}
       <section className="py-14 sm:py-20 bg-background w-full">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.06 } } }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6"
           >
-            {services.map(({ Icon, title, desc, color }, i) => (
+            {services.map(({ emoji, title, desc }, i) => (
               <motion.div
                 key={i}
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
-                className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300 group flex flex-col gap-4"
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.45 } } }}
+                className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-border hover:shadow-md hover:-translate-y-1 hover:border-primary/40 transition-all duration-300 group flex flex-col gap-4"
               >
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}>
-                  <Icon className="w-6 h-6" />
-                </div>
+                <div className="text-4xl">{emoji}</div>
                 <div>
-                  <h3 className="font-bold text-foreground text-base sm:text-lg mb-1.5 group-hover:text-primary transition-colors">{title}</h3>
+                  <h3 className="font-bold text-foreground text-base sm:text-lg mb-2 group-hover:text-primary transition-colors">{title}</h3>
                   <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">{desc}</p>
                 </div>
+                <a href="tel:+919531323295"
+                  className="self-start inline-flex items-center gap-1 text-primary font-semibold text-sm hover:underline mt-auto">
+                  📅 Book Consultation →
+                </a>
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
 
-          <div className="text-center mt-12">
-            <p className="text-muted-foreground mb-5 text-base sm:text-lg">Ready to book a consultation?</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a href="tel:+919531323295" className="inline-flex items-center gap-2 bg-primary text-secondary font-bold px-8 py-3.5 rounded-full hover:bg-primary/90 transition-colors shadow-lg shadow-primary/25 text-sm sm:text-base">
-                📞 Call: 95313 23295
-              </a>
-              <Link href="/contact" className="inline-flex items-center gap-2 border border-secondary/25 text-secondary font-bold px-8 py-3.5 rounded-full hover:bg-secondary/5 transition-colors text-sm sm:text-base">
-                Get Directions →
-              </Link>
+      {/* ── TIMINGS BANNER ── */}
+      <section className="py-10 sm:py-12 bg-secondary w-full overflow-x-clip">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-3xl">🌅</span>
+              <h4 className="text-primary font-bold text-lg">9:30 AM – 1:30 PM</h4>
+              <p className="text-white/70 text-sm">Morning OPD · Mon–Sat</p>
             </div>
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-3xl">🌆</span>
+              <h4 className="text-primary font-bold text-lg">5:00 PM – 8:30 PM</h4>
+              <p className="text-white/70 text-sm">Evening OPD · Mon–Sat</p>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-3xl">📞</span>
+              <h4 className="text-primary font-bold text-lg">95313 23295</h4>
+              <p className="text-white/70 text-sm">Call to Book · Walk-ins Welcome</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="py-12 sm:py-14 bg-white w-full">
+        <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-secondary mb-3">
+            Ready to <span className="text-primary">Book a Consultation?</span>
+          </h3>
+          <p className="text-muted-foreground text-base sm:text-lg mb-6">Call us, send a WhatsApp, or walk in during clinic hours.</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="tel:+919531323295"
+              className="inline-flex items-center gap-2 bg-primary text-secondary font-bold px-8 py-3.5 rounded-full hover:bg-primary/90 transition-colors shadow-lg shadow-primary/25 text-sm sm:text-base">
+              📞 Call: 95313 23295
+            </a>
+            <Link href="/contact"
+              className="inline-flex items-center gap-2 border border-secondary/25 text-secondary font-bold px-8 py-3.5 rounded-full hover:bg-secondary/5 transition-colors text-sm sm:text-base">
+              Get Directions →
+            </Link>
           </div>
         </div>
       </section>
