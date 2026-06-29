@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Leaf } from 'lucide-react';
+import { Link, useLocation } from 'wouter';
 
 const navLinks = [
-  { name: 'Home', id: 'home' },
-  { name: 'About', id: 'about' },
-  { name: 'Services', id: 'services' },
-  { name: 'Contact', id: 'contact' },
-  { name: 'Reviews', id: 'reviews' },
-  { name: 'FAQs', id: 'faqs' },
-  { name: 'Gallery', id: 'gallery' },
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Services', href: '/services' },
+  { name: 'Contact', href: '/contact' },
+  { name: 'Reviews', href: '/reviews' },
+  { name: 'FAQs', href: '/faqs' },
+  { name: 'Gallery', href: '/gallery' },
 ];
-
-function scrollTo(id: string) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -28,11 +23,11 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent, id: string) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    scrollTo(id);
-  };
+  // Close mobile menu on navigation
+  useEffect(() => { setMobileMenuOpen(false); }, [location]);
+
+  const isActive = (href: string) =>
+    href === '/' ? location === '/' : location.startsWith(href);
 
   return (
     <>
@@ -43,27 +38,27 @@ export function Navbar() {
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          <button
-            onClick={(e) => handleNavClick(e, 'home')}
-            className="flex items-center gap-2 shrink-0 bg-transparent border-none cursor-pointer"
-            aria-label="Go to top"
-          >
+          <Link href="/" className="flex items-center gap-2 shrink-0">
             <Leaf className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
             <span className="font-serif text-lg sm:text-xl font-bold text-white tracking-tight">
               Dr.&nbsp;<span className="text-primary">Arun Jain</span>
             </span>
-          </button>
+          </Link>
 
           {/* Desktop Nav — visible at md+ (768px) */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-2 xl:gap-4">
             {navLinks.map((link) => (
-              <button
+              <Link
                 key={link.name}
-                onClick={(e) => handleNavClick(e, link.id)}
-                className="text-white hover:text-primary transition-colors font-medium text-xs lg:text-sm xl:text-base px-2 lg:px-3 py-1 rounded bg-transparent border-none cursor-pointer"
+                href={link.href}
+                className={`font-medium text-xs lg:text-sm xl:text-base px-2 lg:px-3 py-1 rounded transition-colors ${
+                  isActive(link.href)
+                    ? 'text-primary border-b-2 border-primary'
+                    : 'text-white hover:text-primary'
+                }`}
               >
                 {link.name}
-              </button>
+              </Link>
             ))}
             <a
               href="tel:+919531323295"
@@ -93,12 +88,14 @@ export function Navbar() {
         <ul className="flex flex-col items-center gap-5">
           {navLinks.map((link) => (
             <li key={link.name}>
-              <button
-                onClick={(e) => handleNavClick(e, link.id)}
-                className="text-white hover:text-primary transition-colors font-serif text-2xl bg-transparent border-none cursor-pointer"
+              <Link
+                href={link.href}
+                className={`font-serif text-2xl transition-colors ${
+                  isActive(link.href) ? 'text-primary' : 'text-white hover:text-primary'
+                }`}
               >
                 {link.name}
-              </button>
+              </Link>
             </li>
           ))}
         </ul>
